@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav>
+        <div class="hamburger">☰</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="article.html">Article</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+    </nav>
+
+    <main class="photo-gallery">
+        <div class="photo" id="photo1"><img src="3216850-middle.png" alt="photo desc"></div>
+        <div class="photo" id="photo2" style="display: none;"><img src="mona.png" alt="photo desc"></div>
+        <div class="photo" id="photo3" style="display: none;"><img src="jsc1a-scaled.jpg" alt="photo desc"></div>
+    
+        <div class="gallery-controls">
+            <button id="prev">Previous</button>
+            <button id="next">Next</button>
+        </div>
+    </main>
+
+
+<!-- Here is the code that i got from chatgpt for help with the buttons and images -->
+
+    <script>
+        const images = [
+            "3216850-middle.png",
+            "mona.png",
+            "jsc1a-scaled.jpg"
+        ];
+
+        let currentIndex = 0;
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+
+        function showImage(index) {
+            for (let i = 0; i < images.length; i++) {
+                const photoElement = document.getElementById(`photo${i + 1}`);
+                if (i === index) {
+                    photoElement.style.display = 'block';
+                } else {
+                    photoElement.style.display = 'none';
+                }
+            }
+        }
+
+        function showPrevious() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        prevButton.addEventListener('click', showPrevious);
+        nextButton.addEventListener('click', showNext);
+    
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+    
+        });
+    </script>
+</body>
+</html>
